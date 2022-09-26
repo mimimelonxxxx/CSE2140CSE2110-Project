@@ -47,6 +47,16 @@ def getAngle():
     ANGLE = input("What is the angle above the horizontal? (degrees): ")
     ANGLE = checkInt(ANGLE)
     return ANGLE 
+
+def getHeight(): 
+    """
+    asks user to input the initial height of the cannonball above the horizon in meters
+    :return: int
+    """
+    HEIGHT = input("What is the initial height of the cannonball above the horizon? (m): ")
+    HEIGHT = checkInt(HEIGHT)
+    return HEIGHT
+    
 # Processing # 
 
 # Outputs # 
