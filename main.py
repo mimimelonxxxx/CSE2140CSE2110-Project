@@ -129,8 +129,17 @@ def calculateDistance3(VERTICALSPEED, HEIGHT):
     :return: int
     """
     DISTANCEPEAK = VERTICALSPEED ** 2 / (2 * 9.81)
+    TOTALDISTANCE = DISTANCEPEAK + HEIGHT 
+    return TOTALDISTANCE
 
 # Outputs # 
+def displayDistance(DISTANCE):
+    """
+    displays the total distance the cannonball travels
+    :param DISTANCE: int
+    :return: None
+    """
+    print(f"The total distance the cannonball travelled is {DISTANCE}. ")
 
 ### MAIN PROGRAM CODE ### 
 if __name__ == "__main__":
