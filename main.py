@@ -34,6 +34,9 @@ def menu():
 """)
     SCENARIONUMBER = input("What is the scenario number? ")
     SCENARIONUMBER = checkInt(SCENARIONUMBER)
+    if not (SCENARIONUMBER == 1 or SCENARIONUMBER == 2 or SCENARIONUMBER == 3 or SCENARIONUMBER == 4): 
+        print("Please enter a valid number! ")
+        return menu() 
     return SCENARIONUMBER
 
 def getSpeed(): 
@@ -215,9 +218,5 @@ if __name__ == "__main__":
             DISTANCE = calculateDistance(HORIZONTALSPEED, TOTALTIME)
             # Outputs # 
             displayDistance(DISTANCE)
-        else: 
-            print("Please input a proper number! ")
-            SCENARIO = menu()
-        
         if repeatProcess() == False: 
             sys.exit()
