@@ -82,7 +82,7 @@ def repeatProcess():
 # Processing # 
 def calculateTime1(HEIGHT): 
     """
-    calculate time in scenario 1 when given height (m)
+    calculate time (s)  in scenario 1 when given height (m)
     :param HEIGHT: int
     :return: int 
     """
@@ -91,7 +91,7 @@ def calculateTime1(HEIGHT):
 
 def calculateHorizontalSpeed(SPEED, ANGLE):
     """
-    calculate horizontal speed when given cannonball speed (m/s) and angle (degrees)
+    calculate horizontal speed (m/s) when given cannonball speed (m/s) and angle (degrees)
     :param SPEED: int
     :param ANGLE: int
     :return: int
@@ -103,7 +103,7 @@ def calculateHorizontalSpeed(SPEED, ANGLE):
 
 def calculateVerticalSpeed(SPEED, ANGLE):
     """
-    calculate vertical speed when given cannonball speed (m/s) and angle (degrees)
+    calculate vertical speed (m/s) when given cannonball speed (m/s) and angle (degrees)
     :param SPEED: int 
     :param ANGLE: int 
     :return: int 
@@ -113,9 +113,18 @@ def calculateVerticalSpeed(SPEED, ANGLE):
     VERTICALSPEED = SPEED * SINEANGLE
     return VERTICALSPEED
 
+def calculateTimePeak(VERTICALSPEED):
+    """
+    calculates the time (s) it takes for a cannonball to reach its peak when given vertical speed in m/s
+    :param VERTICALSPEED: int
+    :return: int 
+    """
+    TIME = VERTICALSPEED / 9.81
+    return TIME
+
 def calculateTotalTime(VERTICALSPEED):
     """
-    calculate the total time when given vertical speed in m/s
+    calculate the total time (s) when given vertical speed in m/s
     :param VERTICALSPEED: int
     :return: int
     """
@@ -125,7 +134,7 @@ def calculateTotalTime(VERTICALSPEED):
 
 def calculateDistance(HORIZONTALSPEED, TOTALTIME):
     """
-    calculate distance from horizontal speed (m/s) and total time (s)
+    calculate distance (m) from horizontal speed (m/s) and total time (s)
     :param HORIZONTALSPEED: int
     :param TOTALTIME: int
     :return: int
@@ -135,14 +144,14 @@ def calculateDistance(HORIZONTALSPEED, TOTALTIME):
 
 def calculateDistance3(VERTICALSPEED, HEIGHT):
     """
-    calculate total distance from vertical speed and height above ship
+    calculate total distance (m) from vertical speed and height above ship
     :param VERTICALSPEED: int
     :param HEIGHT: int
     :return: int
     """
     DISTANCEPEAK = VERTICALSPEED ** 2 / (2 * 9.81)
-    TOTALDISTANCE = DISTANCEPEAK + HEIGHT 
-    return TOTALDISTANCE
+    TOTALHEIGHT = DISTANCEPEAK + HEIGHT 
+    return TOTALHEIGHT
 
 def convertNegative(VALUE): 
     """
@@ -156,7 +165,7 @@ def convertNegative(VALUE):
 # Outputs # 
 def displayDistance(DISTANCE):
     """
-    displays the total distance the cannonball travels
+    displays the total distance (m) the cannonball travels
     :param DISTANCE: int
     :return: None
     """
@@ -174,7 +183,6 @@ if __name__ == "__main__":
             # Processing # 
             TIME = calculateTime1(HEIGHT)
             DISTANCE = calculateDistance(SPEED, TIME)
-            displayDistance(DISTANCE)
         elif SCENARIO == 2:
             # Inputs # 
             SPEED = getSpeed()
@@ -184,12 +192,19 @@ if __name__ == "__main__":
             VERTICALSPEED = calculateVerticalSpeed(SPEED, ANGLE)
             TIME = calculateTotalTime(VERTICALSPEED)
             DISTANCE = calculateDistance(HORIZONTALSPEED, TIME)
-            displayDistance(DISTANCE)
         elif SCENARIO == 3 or SCENARIO == 4: 
             # Inputs # 
             SPEED = getSpeed()
             ANGLE = getAngle()
             HEIGHT = getHeight3() 
             # Processing # 
+            HORIZONTALSPEED = calculateHorizontalSpeed(SPEED, ANGLE)
+            VERTICALSPEED = calculateVerticalSpeed(SPEED, ANGLE)
+            TIMEPEAK = calculateTimePeak(VERTICALSPEED)
+            TOTALHEIGHT = calculateDistance3(VERTICALSPEED, HEIGHT)
+            TIME = calculateTime1(TOTALHEIGHT)
+            TOTALTIME = TIMEPEAK + TIME
+            DISTANCE = calculateDistance(HORIZONTALSPEED, TOTALTIME)
 
-# Outputs # 
+        # Outputs # 
+        displayDistance(DISTANCE)
