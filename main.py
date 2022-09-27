@@ -1,7 +1,6 @@
 # main.py
 
 import math
-from tkinter import VERTICAL 
 
 ### SUBROUTINES ### 
 
