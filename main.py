@@ -1,5 +1,7 @@
 # main.py
 
+import math 
+
 ### SUBROUTINES ### 
 
 # Inputs # 
@@ -58,6 +60,24 @@ def getHeight():
     return HEIGHT
     
 # Processing # 
+def calculateTime1(HEIGHT): 
+    """
+    calculate time in scenario 1 when given height 
+    :param HEIGHT: int
+    :return: int 
+    """
+    TIME = math.sqrt((2 * HEIGHT) / 9.81)
+    return TIME 
+
+def calculateHorizontalSpeed(SPEED, ANGLE):
+    """
+    calculate horizontal speed when given cannonball speed and angle 
+    :param SPEED: int
+    :param ANGLE: int
+    :return: int
+    """
+    HORIZONTALSPEED = SPEED * math.cos(ANGLE)
+    return HORIZONTALSPEED
 
 # Outputs # 
 
