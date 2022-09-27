@@ -96,7 +96,9 @@ def calculateHorizontalSpeed(SPEED, ANGLE):
     :param ANGLE: int
     :return: int
     """
-    HORIZONTALSPEED = SPEED * math.cos(ANGLE)
+    RADANGLE = ANGLE * (math.pi / 180) # angle in radians
+    COSINEANGLE = math.cos(RADANGLE) # cosine of angle  
+    HORIZONTALSPEED = SPEED * COSINEANGLE
     return HORIZONTALSPEED
 
 def calculateVerticalSpeed(SPEED, ANGLE):
@@ -106,7 +108,9 @@ def calculateVerticalSpeed(SPEED, ANGLE):
     :param ANGLE: int 
     :return: int 
     """
-    VERTICALSPEED = SPEED * math.sin(ANGLE)
+    ANGLE = ANGLE * (math.pi / 180) 
+    SINEANGLE = math.sin(ANGLE)
+    VERTICALSPEED = SPEED * SINEANGLE
     return VERTICALSPEED
 
 def calculateTotalTime(VERTICALSPEED):
