@@ -1,5 +1,6 @@
 # main.py
 
+from lib2to3.pytree import convert
 import math
 
 ### SUBROUTINES ### 
@@ -29,6 +30,7 @@ def menu():
 1. Horizontal to the water 
 2. Parabolic to a level boat 
 3. Parabolic to a smaller boat far away
+4. Parabolic to a larger boat far away
 """)
     SCENARIONUMBER = input("What is the scenario number? ")
     SCENARIONUMBER = checkInt(SCENARIONUMBER)
@@ -63,12 +65,19 @@ def getHeight():
 
 def getHeight3():
     """
-    asks the user to input the inital height of the cannonball above the enenmy ship in meters
+    asks the user to input the inital height of the cannonball above or below the enenmy ship in meters
     :return: int 
     """
-    HEIGHT = input("What is the initial height of the cannonball above the enemy ship? (m): ")
+    HEIGHT = input("What is the initial height of the cannonball above or below the enemy ship? (m): ")
     HEIGHT = checkInt(HEIGHT)
     return HEIGHT 
+
+def repeatProcess():
+    """
+    asks user to repeat process 
+    :return: boolean
+    """
+    CHOICE = input("Would you like to repeat ")
 
 # Processing # 
 def calculateTime1(HEIGHT): 
@@ -131,6 +140,15 @@ def calculateDistance3(VERTICALSPEED, HEIGHT):
     TOTALDISTANCE = DISTANCEPEAK + HEIGHT 
     return TOTALDISTANCE
 
+def convertNegative(VALUE): 
+    """
+    convert a value to negative 
+    :param VALUE: int 
+    :return: int
+    """
+    VALUE = -VALUE
+    return VALUE
+
 # Outputs # 
 def displayDistance(DISTANCE):
     """
@@ -138,13 +156,36 @@ def displayDistance(DISTANCE):
     :param DISTANCE: int
     :return: None
     """
-    print(f"The total distance the cannonball travelled is {DISTANCE}. ")
+    print(f"The total distance the cannonball travelled is {DISTANCE}m. ")
 
 ### MAIN PROGRAM CODE ### 
 if __name__ == "__main__":
-    menu()
+    while True:
 # Inputs # 
-
-# Processing # 
+        SCENARIO = menu()
+        if SCENARIO == 1: 
+            # Inputs # 
+            SPEED = getSpeed()
+            HEIGHT = getHeight()
+            # Processing # 
+            TIME = calculateTime1(HEIGHT)
+            DISTANCE = calculateDistance(SPEED, TIME)
+            displayDistance(DISTANCE)
+        elif SCENARIO == 2:
+            # Inputs # 
+            SPEED = getSpeed()
+            ANGLE = getAngle()
+            # Processing # 
+            HORIZONTALSPEED = calculateHorizontalSpeed(SPEED, ANGLE)
+            VERTICALSPEED = calculateVerticalSpeed(SPEED, ANGLE)
+            TIME = calculateTotalTime(VERTICALSPEED)
+            DISTANCE = calculateDistance(HORIZONTALSPEED, TIME)
+            displayDistance(DISTANCE)
+        elif SCENARIO == 3 or SCENARIO == 4: 
+            # Inputs # 
+            SPEED = getSpeed()
+            ANGLE = getAngle()
+            HEIGHT = getHeight3() 
+            # Processing # 
 
 # Outputs # 
