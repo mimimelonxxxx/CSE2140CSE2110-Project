@@ -1,7 +1,7 @@
 # main.py
 
-from lib2to3.pytree import convert
 import math
+import sys
 
 ### SUBROUTINES ### 
 
@@ -77,7 +77,11 @@ def repeatProcess():
     asks user to repeat process 
     :return: boolean
     """
-    CHOICE = input("Would you like to repeat ")
+    CHOICE = input("Would you like to repeat this process with new numbers? (y/N): ")
+    if CHOICE == "y" or CHOICE == "Y": 
+        return True
+    else: 
+        return False
 
 # Processing # 
 def calculateTime1(HEIGHT): 
@@ -183,6 +187,8 @@ if __name__ == "__main__":
             # Processing # 
             TIME = calculateTime1(HEIGHT)
             DISTANCE = calculateDistance(SPEED, TIME)
+            # Outputs # 
+            displayDistance(DISTANCE)
         elif SCENARIO == 2:
             # Inputs # 
             SPEED = getSpeed()
@@ -192,6 +198,8 @@ if __name__ == "__main__":
             VERTICALSPEED = calculateVerticalSpeed(SPEED, ANGLE)
             TIME = calculateTotalTime(VERTICALSPEED)
             DISTANCE = calculateDistance(HORIZONTALSPEED, TIME)
+            # Outputs # 
+            displayDistance(DISTANCE)
         elif SCENARIO == 3 or SCENARIO == 4: 
             # Inputs # 
             SPEED = getSpeed()
@@ -205,6 +213,11 @@ if __name__ == "__main__":
             TIME = calculateTime1(TOTALHEIGHT)
             TOTALTIME = TIMEPEAK + TIME
             DISTANCE = calculateDistance(HORIZONTALSPEED, TOTALTIME)
-
-        # Outputs # 
-        displayDistance(DISTANCE)
+            # Outputs # 
+            displayDistance(DISTANCE)
+        else: 
+            print("Please input a proper number! ")
+            SCENARIO = menu()
+        
+        if repeatProcess() == False: 
+            sys.exit()
