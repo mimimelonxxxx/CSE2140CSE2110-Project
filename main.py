@@ -151,7 +151,7 @@ def calculateDistance(HORIZONTALSPEED, TOTALTIME):
 
 def calculateDistance3(VERTICALSPEED, HEIGHT):
     """
-    calculate total distance (m) from vertical speed and height above ship
+    calculate total distance (m) from vertical speed and difference in height of the ships
     :param VERTICALSPEED: int
     :param HEIGHT: int
     :return: int
@@ -160,14 +160,26 @@ def calculateDistance3(VERTICALSPEED, HEIGHT):
     TOTALHEIGHT = DISTANCEPEAK + HEIGHT 
     return TOTALHEIGHT
 
-def convertNegative(VALUE): 
+def finalVelocity(INITIALYSPEED, HEIGHT):
     """
-    convert a value to negative 
-    :param VALUE: int 
+    calculates the final velocity of the cannonball when given the initial y-speed and the difference in height between the ships
+    :param INITIALYSPEED: int
+    :param HEIGHT: int
     :return: int
     """
-    VALUE = -VALUE
-    return VALUE
+    FINALVELOCITY = math.sqrt(INITIALYSPEED ** 2 + 2 * -9.81 * HEIGHT)
+    return -FINALVELOCITY, FINALVELOCITY
+
+def calculateTime4(FINALVELOCITY, INITIALVELOCITY, HEIGHT): 
+    """
+    calculates time from the initial and final x-speed and the difference in height
+    :param FINALVELOCITY: int 
+    :param INITIALVELOCITY: int 
+    :param HEIGHT: int 
+    :return: int 
+    """
+    TIME = HEIGHT / ((FINALVELOCITY + INITIALVELOCITY) / 2)
+    return TIME
 
 # Outputs # 
 def displayDistance(DISTANCE):
@@ -234,16 +246,12 @@ if __name__ == "__main__":
             # Processing # 
             HORIZONTALSPEED = calculateHorizontalSpeed(SPEED, ANGLE)
             VERTICALSPEED = calculateVerticalSpeed(SPEED, ANGLE)
-            TIMEPEAK = calculateTimePeak(VERTICALSPEED)
-            TOTALHEIGHT = calculateDistance3(VERTICALSPEED, HEIGHT)
-            TIME = calculateTime1(TOTALHEIGHT)
-            TOTALTIME = TIMEPEAK + TIME
-            DISTANCE = calculateDistance(HORIZONTALSPEED, TOTALTIME)
+            FARFINALVELOCITY, CLOSEFINALVELOCITY = finalVelocity(HORIZONTALSPEED, HEIGHT)
+            TOTALTIMEFAR = calculateTime4(FARFINALVELOCITY, VERTICALSPEED, HEIGHT)
+            TOTALTIMECLOSE = calculateTime4(CLOSEFINALVELOCITY, VERTICALSPEED, HEIGHT)
+            DISTANCEFAR = calculateDistance(HORIZONTALSPEED, TOTALTIMEFAR)
+            DISTANCECLOSE = calculateDistance(HORIZONTALSPEED, TOTALTIMECLOSE)
             # Outputs # 
-            displayDistance(DISTANCE)
+            displayDistance4(DISTANCECLOSE, DISTANCEFAR)
         if repeatProcess() == False: 
             sys.exit()
-
-            # for scenario 4, 
-            # you can hit it in the upward portion of the parabola 
-            # as well as the downward portion of the parabola 
