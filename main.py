@@ -2,6 +2,7 @@
 
 import math
 import sys
+from tkinter import E
 
 ### SUBROUTINES ### 
 
@@ -184,11 +185,11 @@ def calculateTime4(FINALVELOCITY, INITIALVELOCITY, HEIGHT):
 # Outputs # 
 def displayDistance(DISTANCE):
     """
-    displays the total distance (m) the cannonball travels
+    displays the total distance (m) the cannonball travels to 3 sig digs
     :param DISTANCE: int
     :return: None
     """
-    print(f"The total distance the cannonball travelled is {DISTANCE}m. ")
+    print(f"The total distance the cannonball travelled is {DISTANCE:3f}m. ")
 
 def displayDistance4(DISTANCEUP, DISTANCEDOWN):
     """
@@ -197,7 +198,7 @@ def displayDistance4(DISTANCEUP, DISTANCEDOWN):
     :param DISTANCEDOWN: int
     :return: None
     """
-    print(f"The total distance the cannonball travelled to hit in the upward parabola is {DISTANCEUP}m, and the total distance the cannonball travelled to hit in the downward parabola is {DISTANCEDOWN}m. ")
+    print(f"The total distance the cannonball travelled to hit in the upward parabola is {DISTANCEUP:3f}m, and the total distance the cannonball travelled to hit in the downward parabola is {DISTANCEDOWN:3f}m. ")
 ### MAIN PROGRAM CODE ### 
 if __name__ == "__main__":
     while True:
