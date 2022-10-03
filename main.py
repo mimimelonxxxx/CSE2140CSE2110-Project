@@ -2,7 +2,6 @@
 
 import math
 import sys
-from tkinter import E
 
 ### SUBROUTINES ### 
 
