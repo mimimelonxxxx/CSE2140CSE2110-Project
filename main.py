@@ -178,6 +178,14 @@ def displayDistance(DISTANCE):
     """
     print(f"The total distance the cannonball travelled is {DISTANCE}m. ")
 
+def displayDistance4(DISTANCEUP, DISTANCEDOWN):
+    """
+    displays the total distance (m) the cannonball travels in both the upwards portion of the parabola and the downwards portion of the parabola
+    :param DISTANCEUP: int
+    :param DISTANCEDOWN: int
+    :return: None
+    """
+    print(f"The total distance the cannonball travelled to hit in the upward parabola is {DISTANCEUP}m, and the total distance the cannonball travelled to hit in the downward parabola is {DISTANCEDOWN}m. ")
 ### MAIN PROGRAM CODE ### 
 if __name__ == "__main__":
     while True:
@@ -203,7 +211,7 @@ if __name__ == "__main__":
             DISTANCE = calculateDistance(HORIZONTALSPEED, TIME)
             # Outputs # 
             displayDistance(DISTANCE)
-        elif SCENARIO == 3 or SCENARIO == 4: 
+        elif SCENARIO == 3:
             # Inputs # 
             SPEED = getSpeed()
             ANGLE = getAngle()
@@ -218,5 +226,24 @@ if __name__ == "__main__":
             DISTANCE = calculateDistance(HORIZONTALSPEED, TOTALTIME)
             # Outputs # 
             displayDistance(DISTANCE)
+        elif SCENARIO == 4: 
+            # Inputs # 
+            SPEED = getSpeed()
+            ANGLE = getAngle() 
+            HEIGHT = getHeight3()
+            # Processing # 
+            HORIZONTALSPEED = calculateHorizontalSpeed(SPEED, ANGLE)
+            VERTICALSPEED = calculateVerticalSpeed(SPEED, ANGLE)
+            TIMEPEAK = calculateTimePeak(VERTICALSPEED)
+            TOTALHEIGHT = calculateDistance3(VERTICALSPEED, HEIGHT)
+            TIME = calculateTime1(TOTALHEIGHT)
+            TOTALTIME = TIMEPEAK + TIME
+            DISTANCE = calculateDistance(HORIZONTALSPEED, TOTALTIME)
+            # Outputs # 
+            displayDistance(DISTANCE)
         if repeatProcess() == False: 
             sys.exit()
+
+            # for scenario 4, 
+            # you can hit it in the upward portion of the parabola 
+            # as well as the downward portion of the parabola 
