@@ -20,6 +20,20 @@ def checkInt(VALUE):
         NEW_NUM = input("> ")
         return checkInt(NEW_NUM)
 
+def checkFloat(VALUE):
+    """
+    validates whether a value is a float
+    :param VALUE: str
+    :return: float
+    """
+    try: 
+        float(VALUE)
+        return float(VALUE)
+    except ValueError:
+        print("Please enter a valid number! ")
+        NEW_NUM = input("> ")
+        return checkFloat(NEW_NUM)
+
 def menu():
     """
     display different scenarios and asks user to make a selection
@@ -42,37 +56,37 @@ def menu():
 def getSpeed(): 
     """
     asks user to input speed in m/s
-    :return: int 
+    :return: float 
     """
     SPEED = input("What is the speed of the cannonball? (m/s): ")
-    SPEED = checkInt(SPEED)
+    SPEED = checkFloat(SPEED)
     return SPEED 
 
 def getAngle(): 
     """
     asks user to input the angle above the horizontal in degrees
-    :return: int
+    :return: float
     """
     ANGLE = input("What is the angle above the horizontal? (degrees): ")
-    ANGLE = checkInt(ANGLE)
+    ANGLE = checkFloat(ANGLE)
     return ANGLE 
 
 def getHeight(): 
     """
     asks user to input the initial height of the cannonball above the water in meters
-    :return: int
+    :return: float
     """
     HEIGHT = input("What is the height of the cannonball above the water? (m): ")
-    HEIGHT = checkInt(HEIGHT)
+    HEIGHT = checkFloat(HEIGHT)
     return HEIGHT
 
 def getHeight3():
     """
     asks the user to input the inital height of the cannonball above or below the enenmy ship in meters
-    :return: int 
+    :return: float 
     """
     HEIGHT = input("What is the initial height of the cannonball above or below the enemy ship? (m): ")
-    HEIGHT = checkInt(HEIGHT)
+    HEIGHT = checkFloat(HEIGHT)
     return HEIGHT 
 
 def repeatProcess():
@@ -90,8 +104,8 @@ def repeatProcess():
 def calculateTime1(HEIGHT): 
     """
     calculate time (s)  in scenario 1 when given height (m)
-    :param HEIGHT: int
-    :return: int 
+    :param HEIGHT: float
+    :return: float 
     """
     TIME = math.sqrt((2 * HEIGHT) / 9.81)
     return TIME 
@@ -99,9 +113,9 @@ def calculateTime1(HEIGHT):
 def calculateHorizontalSpeed(SPEED, ANGLE):
     """
     calculate horizontal speed (m/s) when given cannonball speed (m/s) and angle (degrees)
-    :param SPEED: int
-    :param ANGLE: int
-    :return: int
+    :param SPEED: float
+    :param ANGLE: float
+    :return: float
     """
     RADANGLE = ANGLE * (math.pi / 180) # angle in radians
     COSINEANGLE = math.cos(RADANGLE) # cosine of angle  
@@ -111,9 +125,9 @@ def calculateHorizontalSpeed(SPEED, ANGLE):
 def calculateVerticalSpeed(SPEED, ANGLE):
     """
     calculate vertical speed (m/s) when given cannonball speed (m/s) and angle (degrees)
-    :param SPEED: int 
-    :param ANGLE: int 
-    :return: int 
+    :param SPEED: float 
+    :param ANGLE: float 
+    :return: float 
     """
     ANGLE = ANGLE * (math.pi / 180) 
     SINEANGLE = math.sin(ANGLE)
@@ -123,8 +137,8 @@ def calculateVerticalSpeed(SPEED, ANGLE):
 def calculateTimePeak(VERTICALSPEED):
     """
     calculates the time (s) it takes for a cannonball to reach its peak when given vertical speed in m/s
-    :param VERTICALSPEED: int
-    :return: int 
+    :param VERTICALSPEED: float
+    :return: float 
     """
     TIME = VERTICALSPEED / 9.81
     return TIME
@@ -132,8 +146,8 @@ def calculateTimePeak(VERTICALSPEED):
 def calculateTotalTime(VERTICALSPEED):
     """
     calculate the total time (s) when given vertical speed in m/s
-    :param VERTICALSPEED: int
-    :return: int
+    :param VERTICALSPEED: float
+    :return: float
     """
     TIME = VERTICALSPEED / 9.81
     TOTALTIME = TIME * 2
@@ -142,9 +156,9 @@ def calculateTotalTime(VERTICALSPEED):
 def calculateDistance(HORIZONTALSPEED, TOTALTIME):
     """
     calculate distance (m) from horizontal speed (m/s) and total time (s)
-    :param HORIZONTALSPEED: int
-    :param TOTALTIME: int
-    :return: int
+    :param HORIZONTALSPEED: float
+    :param TOTALTIME: float
+    :return: float
     """
     DISTANCE = HORIZONTALSPEED * TOTALTIME
     return DISTANCE 
@@ -152,9 +166,9 @@ def calculateDistance(HORIZONTALSPEED, TOTALTIME):
 def calculateDistance3(VERTICALSPEED, HEIGHT):
     """
     calculate total distance (m) from vertical speed and difference in height of the ships
-    :param VERTICALSPEED: int
-    :param HEIGHT: int
-    :return: int
+    :param VERTICALSPEED: float
+    :param HEIGHT: float
+    :return: float
     """
     DISTANCEPEAK = VERTICALSPEED ** 2 / (2 * 9.81)
     TOTALHEIGHT = DISTANCEPEAK + HEIGHT 
@@ -163,9 +177,9 @@ def calculateDistance3(VERTICALSPEED, HEIGHT):
 def finalVelocity(INITIALYSPEED, HEIGHT):
     """
     calculates the final velocity of the cannonball when given the initial y-speed and the difference in height between the ships
-    :param INITIALYSPEED: int
-    :param HEIGHT: int
-    :return: int
+    :param INITIALYSPEED: float
+    :param HEIGHT: float
+    :return: float
     """
     FINALVELOCITY = math.sqrt(INITIALYSPEED ** 2 + 2 * -9.81 * HEIGHT)
     return -FINALVELOCITY, FINALVELOCITY
@@ -173,10 +187,10 @@ def finalVelocity(INITIALYSPEED, HEIGHT):
 def calculateTime4(FINALVELOCITY, INITIALVELOCITY, HEIGHT): 
     """
     calculates time from the initial and final x-speed and the difference in height
-    :param FINALVELOCITY: int 
-    :param INITIALVELOCITY: int 
-    :param HEIGHT: int 
-    :return: int 
+    :param FINALVELOCITY: float 
+    :param INITIALVELOCITY: float 
+    :param HEIGHT: float 
+    :return: float 
     """
     TIME = HEIGHT / ((FINALVELOCITY + INITIALVELOCITY) / 2)
     return TIME
@@ -185,7 +199,7 @@ def calculateTime4(FINALVELOCITY, INITIALVELOCITY, HEIGHT):
 def displayDistance(DISTANCE):
     """
     displays the total distance (m) the cannonball travels to 3 sig digs
-    :param DISTANCE: int
+    :param DISTANCE: float
     :return: None
     """
     print(f"The total distance the cannonball travelled is {DISTANCE}m. ")
@@ -193,8 +207,8 @@ def displayDistance(DISTANCE):
 def displayDistance4(DISTANCEUP, DISTANCEDOWN):
     """
     displays the total distance (m) the cannonball travels in both the upwards portion of the parabola and the downwards portion of the parabola
-    :param DISTANCEUP: int
-    :param DISTANCEDOWN: int
+    :param DISTANCEUP: float
+    :param DISTANCEDOWN: float
     :return: None
     """
     print(f"The total distance the cannonball travelled to hit in the upward parabola is {DISTANCEUP}m, and the total distance the cannonball travelled to hit in the downward parabola is {DISTANCEDOWN}m. ")
