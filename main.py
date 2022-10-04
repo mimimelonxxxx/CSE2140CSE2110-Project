@@ -188,7 +188,7 @@ def displayDistance(DISTANCE):
     :param DISTANCE: int
     :return: None
     """
-    print(f"The total distance the cannonball travelled is {DISTANCE:3f}m. ")
+    print(f"The total distance the cannonball travelled is {DISTANCE}m. ")
 
 def displayDistance4(DISTANCEUP, DISTANCEDOWN):
     """
@@ -197,7 +197,7 @@ def displayDistance4(DISTANCEUP, DISTANCEDOWN):
     :param DISTANCEDOWN: int
     :return: None
     """
-    print(f"The total distance the cannonball travelled to hit in the upward parabola is {DISTANCEUP:3f}m, and the total distance the cannonball travelled to hit in the downward parabola is {DISTANCEDOWN:3f}m. ")
+    print(f"The total distance the cannonball travelled to hit in the upward parabola is {DISTANCEUP}m, and the total distance the cannonball travelled to hit in the downward parabola is {DISTANCEDOWN}m. ")
 ### MAIN PROGRAM CODE ### 
 if __name__ == "__main__":
     while True:
