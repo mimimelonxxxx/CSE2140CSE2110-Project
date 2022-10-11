@@ -33,13 +33,14 @@ def checkFloat(VALUE):
         print("Please enter a valid number! ")
         NEW_NUM = input("> ")
         return checkFloat(NEW_NUM)
+def intro(): 
+    print("Welcome to the Official Navy Cannon Distance Calculator! Find the total distance the cannonball travels from the cannon! ")
 
 def menu():
     """
     display different scenarios and asks user to make a selection
     :return: int
     """
-    print("Welcome to the Official Navy Cannon Distance Calculator! Find the total distance the cannonball travels from the cannon! ")
     print("""
 1. Horizontal to the water 
 2. Parabolic to a level boat 
@@ -215,6 +216,7 @@ def displayDistance4(DISTANCEUP, DISTANCEDOWN):
 ### MAIN PROGRAM CODE ### 
 if __name__ == "__main__":
     while True:
+        intro()
 # Inputs # 
         SCENARIO = menu()
         if SCENARIO == 1: 
